@@ -6,24 +6,36 @@
 /*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 11:07:38 by adanylev          #+#    #+#             */
-/*   Updated: 2024/04/29 14:01:29 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:03:09 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+void	lonely_philo(t_info *info)
+{
+	u_int64_t	elapsed;
+
+	elapsed = get_current_time() - info->start_time;
+	printf("%-5llu" "Philosopher 1 has taken a right fork.\n",
+		elapsed);
+	ft_usleep(info->death_time, &info->phils[0]);
+	elapsed += info->death_time;
+	printf("%-5llu" "R.I.P.: philosopher 1 has died.\n",
+		elapsed);
+}
+
 int	main(int argc, char **argv)
 {
 	t_info	info;
-	(void)argv;
-	if (!parsing(argc, argv, &info))
+	
+	if (argc == 5 || argc == 6)
 	{
-		printf("%d\n", info.num_phils);
-		printf("%llu\n", info.death_time);
-		printf("%llu\n", info.eat_time);
-		printf("%llu\n", info.sleep_time);
-		printf("%d\n", info.num_meals);
+		if (!parsing(argc, argv, &info))
+		{
+			//here start the prog
+		}
 	}
-		
+	
 	return (0);
 }
