@@ -6,7 +6,7 @@
 /*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:13:50 by adanylev          #+#    #+#             */
-/*   Updated: 2024/04/24 11:56:59 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/04/29 14:01:48 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,6 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
-
-# define Y "\x1b[93m"
-# define P "\x1b[95m"
-# define B "\x1b[94m"
-# define G "\x1b[92m"
-# define PUR "\x1b[96m"
-# define O "\x1b[91m"
-# define RESET "\x1b[0m"
 
 typedef struct s_fork
 {
@@ -68,7 +60,7 @@ void				free_phil(t_phil *phil);
 void				free_all(t_info *info);
 void				big_error(t_info *info);
 int					check_input(char **argv);
-unsigned long long	ft_atol(char *argv);
+long long			ft_atol(char *argv);
 int					parsing(int argc, char **argv, t_info *info);
 int					ft_strlen(char *s);
 int					ft_strncmp(char *s1, char *s2, int n);
@@ -83,7 +75,7 @@ void				big_error(t_info *info);
 void				process_start(t_info *info);
 void				ft_usleep(u_int64_t time, t_phil *phil);
 u_int64_t			get_current_time(void);
-void				writing(t_phil *phil, int action);
+void				writing(t_phil *phil, char *msg);
 int					someone_died(t_phil *phil);
 void				lonely_philo(t_info *info);
 void				memento_mori(t_info *info);

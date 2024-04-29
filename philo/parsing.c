@@ -6,7 +6,7 @@
 /*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 11:23:29 by adanylev          #+#    #+#             */
-/*   Updated: 2024/04/18 12:57:47 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/04/29 14:03:31 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	parsing(int argc, char **argv, t_info *info)
 	return (0);
 }
 
-unsigned long long	ft_atol(char *argv)
+long long	ft_atol(char *argv)
 {
-	unsigned long long	n;
+	long long	n;
 
 	if (ft_strlen(argv) > 26)
 		return (0);
@@ -80,10 +80,10 @@ void	lonely_philo(t_info *info)
 	u_int64_t	elapsed;
 
 	elapsed = get_current_time() - info->start_time;
-	printf(Y "%-5llu" RESET G "Philosopher 1 has taken a right fork.\n" RESET,
+	printf("%-5llu" "Philosopher 1 has taken a right fork.\n",
 		elapsed);
 	ft_usleep(info->death_time, &info->phils[0]);
 	elapsed += info->death_time;
-	printf(Y "%-5llu" RESET O "R.I.P.: philosopher 1 has died.\n" RESET,
+	printf("%-5llu" "R.I.P.: philosopher 1 has died.\n",
 		elapsed);
 }

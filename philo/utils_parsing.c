@@ -6,7 +6,7 @@
 /*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 11:38:33 by adanylev          #+#    #+#             */
-/*   Updated: 2024/04/20 17:57:02 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/04/29 14:02:23 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,3 @@ int	ft_strncmp(char *s1, char *s2, int n)
 	return (0);
 }
 
-void	free_phil(t_phil *phil)
-{
-	pthread_mutex_destroy(phil->fork_r);
-	pthread_mutex_destroy(phil->fork_l);
-}
-
-void	free_fork(t_fork *fork)
-{
-	pthread_mutex_destroy(&fork->fork);
-	free(fork);
-}
-
-void	big_error(t_info *info)
-{
-	printf("BIG ERROR\n");
-	free_all(info);
-}

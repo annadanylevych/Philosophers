@@ -1,4 +1,4 @@
-SRCS = main.c parsing.c utils_parsing.c inition.c dinner.c eatsleepthink.c
+SRCS = main.c parsing.c utils_parsing.c dinner.c eatsleepthink.c
 
 OBJS = $(SRCS:.c=.o)
 
