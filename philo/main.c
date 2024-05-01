@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 11:07:38 by adanylev          #+#    #+#             */
-/*   Updated: 2024/04/29 15:03:09 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:53:06 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ int	main(int argc, char **argv)
 	{
 		if (!parsing(argc, argv, &info))
 		{
-			//here start the prog
-		}
+			data_init(&info);
 	}
 	
 	return (0);
