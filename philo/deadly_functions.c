@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_parsing.c                                    :+:      :+:    :+:   */
+/*   deadly_functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 11:38:33 by adanylev          #+#    #+#             */
-/*   Updated: 2024/04/29 14:02:23 by adanylev         ###   ########.fr       */
+/*   Created: 2024/05/01 16:16:07 by adanylev          #+#    #+#             */
+/*   Updated: 2024/05/01 16:21:49 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	ft_strlen(char *s)
-{
-	int	len;
-
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
-}
-
-int	ft_strncmp(char *s1, char *s2, int n)
+void	someone_died(t_info *info)
 {
 	int	i;
 
-	i = 0;
-	while ((s1[i] || s2[i]) && i < n)
+	i = -1;
+	pthread_mutex_lock(&info->death_mutti);
+	if (info->dead == 1)
+		{
+			pthread_mutex_unlock(&info->death_mutti);
+			return (1);
+		}
+	else
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
+		pthread_mutex_unlock(&info->death_mutti);
+		return (0);
 	}
-	return (0);
 }
-
