@@ -1,33 +1,26 @@
-SRCS = main.c parsing.c utils_parsing.c time_functions.c eatsleepthink.c
+SRCS = main.c parsing.c utils_parsing.c inition.c dinner.c eatsleepthink.c
 
-TMP = .tmp/
+OBJS = $(SRCS:.c=.o)
 
-OBJS = $(addprefix $(TMP), $(SRCS:.c=.o))
-
-RM = rm -rf
+RM = rm -f
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=thread
 
 NAME = philo
 
 HEADER = philosophers.h
 
-all: $(TMP) $(NAME)
+all: $(NAME)
 
-$(TMP):
-	@mkdir -p $(TMP)
-
-$(TMP)%.o:%.c	$(HEADER) Makefile
-	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
-
+%.o:%.c	$(HEADER) Makefile
+		$(CC) $(CFLAGS) -c $< -o $@
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
-	$(RM) $(TMP) 
+	$(RM) $(OBJS) 
 
 fclean: clean
 	$(RM) $(NAME)  

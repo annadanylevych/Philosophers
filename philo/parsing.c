@@ -6,7 +6,7 @@
 /*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 11:23:29 by adanylev          #+#    #+#             */
-/*   Updated: 2024/04/29 14:16:27 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/01 15:14:56 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,17 @@ int	check_input(char **argv)
 		i++;
 	}
 	return (0);
+}
+
+void	lonely_philo(t_info *info)
+{
+	long long	elapsed;
+
+	elapsed = get_current_time() - info->start_time;
+	printf(Y "%-5llu" RESET G "Philosopher 1 has taken a right fork.\n" RESET,
+		elapsed);
+	ft_usleep(info->death_time, &info->phils[0]);
+	elapsed += info->death_time;
+	printf(Y "%-5llu" RESET O "R.I.P.: philosopher 1 has died.\n" RESET,
+		elapsed);
 }
