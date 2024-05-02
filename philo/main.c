@@ -3,27 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 11:07:38 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/01 14:33:19 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/02 12:34:27 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-/*
+
 void	lonely_philo(t_info *info)
 {
-	u_int64_t	elapsed;
+	long long	elapsed;
 
-	elapsed = get_current_time() - info->start_time;
-	printf("%-5llu" "Philosopher 1 has taken a right fork.\n",
+	elapsed = 0;
+	printf("%llu Philosopher 1 has taken a right fork.\n",
 		elapsed);
 	ft_usleep(info->death_time, &info->phils[0]);
 	elapsed += info->death_time;
-	printf("%-5llu" "R.I.P.: philosopher 1 has died.\n",
+	printf("%llu R.I.P.: philosopher 1 has died.\n",
 		elapsed);
-}*/
+}
+
+void	free_all(t_info *info)
+{
+	int	i;
+
+	i = 0;
+	free(info->phils);
+	while (i < info->num_phils)
+	{
+		if (info->forks)
+			pthread_mutex_destroy(&info->forks[i]);
+		i++;
+	}
+	free(info->forks);
+}
+
+void	big_error(t_info *info)
+{
+	printf("Error with thread creation\n");
+	free_all(info);
+}
 
 int	main(int argc, char **argv)
 {
@@ -34,8 +55,20 @@ int	main(int argc, char **argv)
 		if (!parsing(argc, argv, &info))
 		{
 			data_init(&info);
+			if (info.num_phils == 1)
+			{
+				lonely_philo(&info);
+				return (0);
+			}
+			start_dinner(&info);
+			free_all(&info);
+			return (0);
+		}
+		else
+		{
+			printf("Wrong input format\n");
+			return (1);
 		}
 	}
-	
-	return (0);
+	return (1);
 }

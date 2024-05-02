@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:49:09 by annadanylev       #+#    #+#             */
-/*   Updated: 2024/05/01 14:36:38 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/02 12:47:54 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ void    data_init(t_info *info)
     int     i;
 
     i = -1;
+    info->full = 0;
     info->phils = malloc(sizeof(t_phil) * info->num_phils);
+    //PROTECT MALLOCSSSSSS
     info->forks = malloc(sizeof(pthread_mutex_t) * info->num_phils);
     while (++i < info->num_phils)
         pthread_mutex_init(&info->forks[i], NULL);

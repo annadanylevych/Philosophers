@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:13:50 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/01 16:26:38 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/02 11:39:31 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,21 @@ typedef struct s_phil
 	int				meals_num;
 	pthread_mutex_t	*fork_r;
 	pthread_mutex_t	*fork_l;
-	u_int64_t		last_meal;
+	long long		last_meal;
 }					t_phil;
 
 typedef struct s_info
 {
+	int				full;
 	int				max_meals;
 	int				num_phils;
 	t_phil			*phils;
-	u_int64_t		death_time;
-	u_int64_t		eat_time;
-	u_int64_t		sleep_time;
+	long long		death_time;
+	long long		eat_time;
+	long long		sleep_time;
 	pthread_mutex_t	*forks;
 	int				dead;
-	u_int64_t		start_time;
+	long long		start_time;
 	pthread_mutex_t	death_mutti;
 	pthread_mutex_t	write_mutti;
 	pthread_mutex_t	time_mutti;
@@ -55,11 +56,17 @@ long long			ft_atol(char *argv);
 int					parsing(int argc, char **argv, t_info *info);
 int					ft_strlen(char *s);
 int					ft_strncmp(char *s1, char *s2, int n);
-void				ft_usleep(u_int64_t time, t_phil *phil);
-u_int64_t			get_current_time(void);
+void				ft_usleep(long long time, t_phil *phil);
+long long			get_current_time(void);
 void				lonely_philo(t_info *info);
 int					error_init(t_info *info);
-void				someone_died(t_info *info);
+int					someone_died(t_info *info);
 void				start_dinner(t_info *info);
+void				eat(t_phil *phil);
+void				sleep_think(t_phil *phil);
+void				writing(t_phil *phil, char *msg);
+int 				dont_overeat(t_phil *phil);
+void				rip(t_info *info, int i);
+
 
 #endif

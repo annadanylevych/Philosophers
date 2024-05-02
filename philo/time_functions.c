@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   time_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 19:54:07 by annadanylev       #+#    #+#             */
-/*   Updated: 2024/04/29 14:05:36 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/02 21:34:15 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	ft_usleep(u_int64_t time, t_phil *phil)
+void	ft_usleep(long long time, t_phil *phil)
 {
-	u_int64_t	start;
+	long long	start;
 
 	start = get_current_time();
 	while ((get_current_time() - start) < time)
 	{
-		if (!someone_died(phil))
-			usleep(time / 10);
+		if (!someone_died(phil->info))
+			usleep(time/10);
 		else
 			return ;
 	}
 }
 
-u_int64_t	get_current_time(void)
+long long	get_current_time(void)
 {
 	struct timeval	tv;
 
