@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 14:38:24 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/05 14:54:05 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/05 15:01:19 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ void	*routine(void *aux)
 	phil = (t_phil *)aux;
 	while (!someone_died(phil->info))
 	{
-		if (take_forks(phil))
-			return (NULL);
+		take_forks(phil);
         if (someone_died(phil->info)) 
 		{
 			pthread_mutex_unlock(phil->fork_r);
