@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 16:31:10 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/05 13:52:03 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/05 14:59:48 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int	take_forks(t_phil *phil)
 		writing(phil, "has taken a fork");
 	if (phil->id % 2 == 0) 
 	{
-		if (pthread_mutex_lock(phil->fork_l))
-			return (pthread_mutex_unlock(phil->fork_l), 1);
+		if (pthread_mutex_lock(phil->fork_l) != 0)
+			return (pthread_mutex_unlock(phil->fork_r), 1);
 		if (!someone_died(phil->info))
 			writing(phil, "has taken a fork");
 	}	
     else
 	{
-		if (pthread_mutex_lock(phil->fork_r))
+		if (pthread_mutex_lock(phil->fork_r) != 0)
 			return (pthread_mutex_unlock(phil->fork_l), 1);
 		if (!someone_died(phil->info))
 			writing(phil, "has taken a fork");			
