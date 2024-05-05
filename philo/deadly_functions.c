@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 16:16:07 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/05 17:58:04 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/05 19:25:33 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	rip(t_info *info, int i)
 	pthread_mutex_lock(&info->death_mutti);
 	info->dead = 1;
 	pthread_mutex_unlock(&info->death_mutti);
-	elapsed = get_current_time() - info->phils[i].start;
+	elapsed = get_current_time() - info->start_time;
 	pthread_mutex_lock(&info->write_mutti);
 	printf("%llu R.I.P.: philosopher %d has died.\n", elapsed, i + 1);
 	pthread_mutex_unlock(&info->write_mutti);

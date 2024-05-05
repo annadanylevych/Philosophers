@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:49:09 by annadanylev       #+#    #+#             */
-/*   Updated: 2024/05/05 18:01:08 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/05 19:23:30 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void    get_forks(t_phil *phil, int i)
 {
-    phil->fork_l = &phil->info->forks[i];
-    phil->fork_r = &phil->info->forks[(i + 1) % phil->info->num_phils];
+    phil->fork_r = &phil->info->forks[i];
+    phil->fork_l = &phil->info->forks[(i + 1) % phil->info->num_phils];
 }
 
 void    philos_init(t_info *info)

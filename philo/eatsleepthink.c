@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 16:31:10 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/05 18:32:18 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/05 19:08:36 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int	take_forks(t_phil *phil)
 void	eat(t_phil *phil)
 {
 	pthread_mutex_lock(&phil->info->time_mutti);
-	phil->last_meal = get_current_time();
+	phil->last_meal = get_current_time() - phil->info->start_time;
 	phil->meals_num++;
 	pthread_mutex_unlock(&phil->info->time_mutti);
 	writing(phil, "is eating");
-	usleep(phil->info->eat_time * 1000); //ft_usleep(phil->info->eat_time, phil);
+	ft_usleep(phil->info->eat_time, phil);
 	if (phil->id % 2 == 0)
 	{ 
         pthread_mutex_unlock(phil->fork_r);
@@ -55,7 +55,7 @@ void	eat(t_phil *phil)
 void	sleep_think(t_phil *phil)
 {
 	writing(phil, "is sleeping");
-	usleep(phil->info->sleep_time * 1000); //ft_usleep(phil->info->sleep_time, phil);
+	ft_usleep(phil->info->sleep_time, phil);
 	writing(phil, "is thinking");
 }
 
@@ -63,7 +63,7 @@ void	writing(t_phil *phil, char *msg)
 {
 	long long	elapsed;
 
-	elapsed = get_current_time() - phil->start;
+	elapsed = get_current_time() - phil->info->start_time;
 	if (!someone_died(phil->info))
 	{
 		pthread_mutex_lock(&phil->info->write_mutti);

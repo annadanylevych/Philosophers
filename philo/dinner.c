@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 14:38:24 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/05 17:35:32 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/05 19:22:40 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	*routine(void *aux)
 	t_phil	*phil;
 	
 	phil = (t_phil *)aux;
+	if (phil->id % 2 == 0)
+		usleep(20);
 	while (!someone_died(phil->info))
 	{
 		take_forks(phil);
@@ -26,11 +28,13 @@ void	*routine(void *aux)
     	    pthread_mutex_unlock(phil->fork_l);
 		}
 		eat(phil);
+		usleep(40);
         if (someone_died(phil->info))
             return (NULL);
 		if (phil->meals_num >= phil->info->max_meals && phil->info->max_meals > 0)
             break; 
         sleep_think(phil);
+		usleep(40);
 		if (someone_died(phil->info))
             return (NULL);
     }
@@ -45,7 +49,6 @@ void	start_dinner(t_info *info)
 	info->start_time = get_current_time();
 	while (++i < info->num_phils)
 	{
-		info->phils[i].start = get_current_time();
 		if (pthread_create(&info->phils[i].philo_thread, NULL, &routine,
 					(void *)&info->phils[i]))
 		{

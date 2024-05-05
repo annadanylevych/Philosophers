@@ -9,7 +9,7 @@ RM = rm -rf
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=thread
 
 NAME = philo
 

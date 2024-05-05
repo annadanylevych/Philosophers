@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 14:31:44 by annadanylev       #+#    #+#             */
-/*   Updated: 2024/05/05 17:52:51 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/05 19:26:00 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void *monitor(void *data)
         pthread_mutex_lock(&info->time_mutti);
         while (++i < info->num_phils)
 		{
-            if (get_current_time() - info->phils[i].last_meal >= info->death_time)
+            if (get_current_time() - info-> start_time - info->phils[i].last_meal >= info->death_time)
 			{
                 rip(info, i);
                 return (pthread_mutex_unlock(&info->time_mutti), NULL);
@@ -48,6 +48,6 @@ void *monitor(void *data)
         if (full_count == info->num_phils)
             return (pthread_mutex_unlock(&info->time_mutti), NULL);
         pthread_mutex_unlock(&info->time_mutti);
-        usleep(200);
+        usleep(100);
     }
 }
