@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 14:31:44 by annadanylev       #+#    #+#             */
-/*   Updated: 2024/05/05 19:26:00 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/05 20:33:58 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void *monitor(void *data)
         if (full_count == info->num_phils)
             return (pthread_mutex_unlock(&info->time_mutti), NULL);
         pthread_mutex_unlock(&info->time_mutti);
-        usleep(100);
+        usleep(2000);
     }
 }
