@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:49:09 by annadanylev       #+#    #+#             */
-/*   Updated: 2024/05/05 13:24:37 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/05 18:01:08 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,8 @@ void    philos_init(t_info *info)
     {
         info->phils[i].id = i + 1;
         info->phils[i].meals_num = 0;
-        info->phils[i].last_meal = 0;
+        info->phils[i].last_meal = get_current_time();
         info->phils[i].info = info;
-        info->phils[i].is_eating = 0;
-        info->phils[i].time_to_die = info->death_time;
-        info->phils[i].time_to_eat = info->eat_time;
-        info->phils[i].time_to_sleep = info->sleep_time;
         get_forks(&info->phils[i], i);
     }
 }

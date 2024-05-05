@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 14:31:44 by annadanylev       #+#    #+#             */
-/*   Updated: 2024/05/05 14:53:10 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/05 17:52:51 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@ void *monitor(void *data)
 
     while (1)
 	{
-        pthread_mutex_lock(&info->time_mutti);
 		i = -1;
 		full_count = 0;
+        pthread_mutex_lock(&info->time_mutti);
         while (++i < info->num_phils)
 		{
-           // printf("hola\n");
-            if (get_current_time() - info->start_time > info->phils[i].time_to_die)
+            if (get_current_time() - info->phils[i].last_meal >= info->death_time)
 			{
                 rip(info, i);
                 return (pthread_mutex_unlock(&info->time_mutti), NULL);

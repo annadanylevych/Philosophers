@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 14:38:24 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/05 15:01:19 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/05 17:35:32 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,6 @@ void	*routine(void *aux)
     return (NULL);
 }
 
-
-void	thread_love(t_info *info)
-{
-	int	i;
-	
-	i = -1;
-	while (++i < info->num_phils)
-	{
-		if (pthread_join(info->phils[i].philo_thread, NULL))
-		{
-			big_error(info);
-			return ;
-		}
-	}
-}
-
 void	start_dinner(t_info *info)
 {
 	int i;
@@ -61,6 +45,7 @@ void	start_dinner(t_info *info)
 	info->start_time = get_current_time();
 	while (++i < info->num_phils)
 	{
+		info->phils[i].start = get_current_time();
 		if (pthread_create(&info->phils[i].philo_thread, NULL, &routine,
 					(void *)&info->phils[i]))
 		{

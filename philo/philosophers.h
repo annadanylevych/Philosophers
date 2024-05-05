@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:13:50 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/05 14:35:22 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/05 17:34:25 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,13 @@
 typedef struct s_phil
 {
 	struct s_info	*info;
-	int				is_eating;
-	long long		time_to_die;
-	long long		time_to_eat;
-	long long		time_to_sleep;
 	int				id;
 	pthread_t		philo_thread;
 	int				meals_num;
 	pthread_mutex_t	*fork_r;
 	pthread_mutex_t	*fork_l;
 	long long		last_meal;
+	long long 		start;
 }					t_phil;
 
 typedef struct s_info

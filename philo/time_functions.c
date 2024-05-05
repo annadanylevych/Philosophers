@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 19:54:07 by annadanylev       #+#    #+#             */
-/*   Updated: 2024/05/02 21:34:15 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/05 17:41:05 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_usleep(long long time, t_phil *phil)
 	while ((get_current_time() - start) < time)
 	{
 		if (!someone_died(phil->info))
-			usleep(time/10);
+			usleep(50);
 		else
 			return ;
 	}

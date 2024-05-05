@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 11:07:38 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/05 14:52:49 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/05 15:13:12 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ int	main(int argc, char **argv)
 				return (0);
 			}
 			start_dinner(&info);
-			//monitor(&info);
-			//thread_love(&info);
 			free_all(&info);
 			return (0);
 		}
