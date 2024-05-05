@@ -1,5 +1,5 @@
 SRCS = main.c parsing.c utils_parsing.c init.c dinner.c deadly_functions.c \
-	eatsleepthink.c time_functions.c
+	eatsleepthink.c time_functions.c monitoring.c
 
 TMP = .tmp/
 
@@ -9,7 +9,7 @@ RM = rm -rf
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=thread
 
 NAME = philo
 

@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 11:07:38 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/02 12:34:27 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/05 14:52:49 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,19 @@ int	main(int argc, char **argv)
 	{
 		if (!parsing(argc, argv, &info))
 		{
-			data_init(&info);
+			if (data_init(&info))
+			{
+				free_all(&info);
+				return (1);
+			}
 			if (info.num_phils == 1)
 			{
 				lonely_philo(&info);
 				return (0);
 			}
 			start_dinner(&info);
+			//monitor(&info);
+			//thread_love(&info);
 			free_all(&info);
 			return (0);
 		}

@@ -6,27 +6,52 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 16:31:10 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/02 21:33:59 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/05 13:52:03 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+int	take_forks(t_phil *phil)
+{
+	if (phil->id % 2 == 0) 
+        pthread_mutex_lock(phil->fork_r);
+	else 
+	    pthread_mutex_lock(phil->fork_l);
+	if (!someone_died(phil->info))
+		writing(phil, "has taken a fork");
+	if (phil->id % 2 == 0) 
+	{
+		if (pthread_mutex_lock(phil->fork_l))
+			return (pthread_mutex_unlock(phil->fork_l), 1);
+		if (!someone_died(phil->info))
+			writing(phil, "has taken a fork");
+	}	
+    else
+	{
+		if (pthread_mutex_lock(phil->fork_r))
+			return (pthread_mutex_unlock(phil->fork_l), 1);
+		if (!someone_died(phil->info))
+			writing(phil, "has taken a fork");			
+	}
+	return (0);
+}
+
 void	eat(t_phil *phil)
 {
-	pthread_mutex_lock(phil->fork_r);
-	writing(phil, "has taken a right fork");
-	pthread_mutex_lock(phil->fork_l);
-	writing(phil, "has taken a left fork");
 	writing(phil, "is eating");
 	pthread_mutex_lock(&phil->info->time_mutti);
 	phil->last_meal = get_current_time() - phil->info->start_time;
+	phil->time_to_die = phil->last_meal + phil->info->death_time;
 	pthread_mutex_unlock(&phil->info->time_mutti);
-	phil->meals_num++;
 	ft_usleep(phil->info->eat_time, phil);
+	pthread_mutex_lock(&phil->info->time_mutti);
+	phil->meals_num++;
+	pthread_mutex_unlock(&phil->info->time_mutti);
+    pthread_mutex_unlock(phil->fork_l);
 	pthread_mutex_unlock(phil->fork_r);
-	pthread_mutex_unlock(phil->fork_l);
 }
+
 
 void	sleep_think(t_phil *phil)
 {

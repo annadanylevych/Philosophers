@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 16:16:07 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/02 13:50:16 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/05 13:59:32 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,6 @@ int	someone_died(t_info *info)
 		pthread_mutex_unlock(&info->death_mutti);
 		return (0);
 	}
-}
-
-int dont_overeat(t_phil *phil)
-{
-	pthread_mutex_lock(&phil->info->time_mutti);
-	if (phil->meals_num == phil->info->max_meals)
-	{
-		phil->info->full++;
-		pthread_mutex_unlock(&phil->info->time_mutti);
-		return (1);
-	}
-	pthread_mutex_unlock(&phil->info->time_mutti);
-	return (0);
 }
 
 void	rip(t_info *info, int i)
