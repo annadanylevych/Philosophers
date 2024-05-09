@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   deadly_functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
+/*   By: adanylev <adanylev@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 16:16:07 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/05 19:25:33 by annadanylev      ###   ########.fr       */
+/*   Created: 2024/05/09 11:38:21 by adanylev          #+#    #+#             */
+/*   Updated: 2024/05/09 11:38:49 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "philosophers.h"
 
 int	someone_died(t_info *info)
 {
 	pthread_mutex_lock(&info->death_mutti);
 	if (info->dead == 1)
-		{
-			pthread_mutex_unlock(&info->death_mutti);
-			return (1);
-		}
+	{
+		pthread_mutex_unlock(&info->death_mutti);
+		return (1);
+	}
 	else
 	{
 		pthread_mutex_unlock(&info->death_mutti);
@@ -29,7 +28,7 @@ int	someone_died(t_info *info)
 
 void	rip(t_info *info, int i)
 {
-	long long elapsed;
+	long long	elapsed;
 
 	pthread_mutex_lock(&info->death_mutti);
 	info->dead = 1;

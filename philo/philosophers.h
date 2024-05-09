@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
+/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:13:50 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/05 17:34:25 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/09 11:49:30 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_phil
 	pthread_mutex_t	*fork_r;
 	pthread_mutex_t	*fork_l;
 	long long		last_meal;
-	long long 		start;
+	long long		start;
 }					t_phil;
 
 typedef struct s_info
@@ -50,7 +50,7 @@ typedef struct s_info
 }					t_info;
 
 int					take_forks(t_phil *phil);
-int   				data_init(t_info *info);
+int					data_init(t_info *info);
 void				big_error(t_info *info);
 int					check_input(char **argv);
 long long			ft_atol(char *argv);
@@ -68,7 +68,6 @@ void				sleep_think(t_phil *phil);
 void				writing(t_phil *phil, char *msg);
 void				rip(t_info *info, int i);
 void				thread_love(t_info *info);
-void 				*monitor(void *data);
-
+void				*monitor(t_info *info);
 
 #endif

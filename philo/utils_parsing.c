@@ -6,7 +6,7 @@
 /*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 11:38:33 by adanylev          #+#    #+#             */
-/*   Updated: 2024/04/29 14:02:23 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/09 11:41:31 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,3 @@ int	ft_strncmp(char *s1, char *s2, int n)
 	}
 	return (0);
 }
-

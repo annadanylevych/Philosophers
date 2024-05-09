@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 16:31:10 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/05 19:08:36 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/09 11:39:20 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 int	take_forks(t_phil *phil)
 {
 	if (phil->id % 2 == 0)
-	{ 
-        pthread_mutex_lock(phil->fork_r);
+	{
+		pthread_mutex_lock(phil->fork_r);
 		writing(phil, "has taken a fork");
-	    pthread_mutex_lock(phil->fork_l);
+		pthread_mutex_lock(phil->fork_l);
 		writing(phil, "has taken a fork");
 	}
 	else
@@ -26,7 +26,7 @@ int	take_forks(t_phil *phil)
 		pthread_mutex_lock(phil->fork_l);
 		writing(phil, "has taken a fork");
 		pthread_mutex_lock(phil->fork_r);
-		writing(phil, "has taken a fork");			
+		writing(phil, "has taken a fork");
 	}
 	return (0);
 }
@@ -40,9 +40,9 @@ void	eat(t_phil *phil)
 	writing(phil, "is eating");
 	ft_usleep(phil->info->eat_time, phil);
 	if (phil->id % 2 == 0)
-	{ 
-        pthread_mutex_unlock(phil->fork_r);
-	    pthread_mutex_unlock(phil->fork_l);
+	{
+		pthread_mutex_unlock(phil->fork_r);
+		pthread_mutex_unlock(phil->fork_l);
 	}
 	else
 	{
@@ -50,7 +50,6 @@ void	eat(t_phil *phil)
 		pthread_mutex_unlock(phil->fork_r);
 	}
 }
-
 
 void	sleep_think(t_phil *phil)
 {
@@ -67,7 +66,7 @@ void	writing(t_phil *phil, char *msg)
 	if (!someone_died(phil->info))
 	{
 		pthread_mutex_lock(&phil->info->write_mutti);
-		printf ("%llu Philosopher %d %s.\n", elapsed, phil->id, msg);
+		printf("%llu Philosopher %d %s.\n", elapsed, phil->id, msg);
 		pthread_mutex_unlock(&phil->info->write_mutti);
 	}
 }
