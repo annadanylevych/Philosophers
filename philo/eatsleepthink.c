@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eatsleepthink.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
+/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 16:31:10 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/09 11:39:20 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/09 14:43:13 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	take_forks(t_phil *phil)
 		pthread_mutex_lock(phil->fork_r);
 		writing(phil, "has taken a fork");
 	}
+	usleep (40);
 	return (0);
 }
 
@@ -56,6 +57,7 @@ void	sleep_think(t_phil *phil)
 	writing(phil, "is sleeping");
 	ft_usleep(phil->info->sleep_time, phil);
 	writing(phil, "is thinking");
+	usleep (40);
 }
 
 void	writing(t_phil *phil, char *msg)
